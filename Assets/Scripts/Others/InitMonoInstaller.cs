@@ -8,11 +8,15 @@ namespace Others
         {
             BindFirst();
             BindSettings();
+            BindServices();
+            BindPresenters();
             BindLast();
         }
         
         protected virtual void BindFirst() {}
         protected virtual void BindSettings() {}
+        protected virtual void BindServices() {}
+        protected virtual void BindPresenters() {}
         protected virtual void BindLast() {}
     }
 }

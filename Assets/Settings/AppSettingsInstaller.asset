@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33cbe0b83caf48e68afc52761b9f95a1, type: 3}
   m_Name: AppSettingsInstaller
   m_EditorClassIdentifier: 
+  _uiPrefabs: {fileID: 11400000, guid: fdf258814c0fa904e8cefcd20fcce68f, type: 2}
