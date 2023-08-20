@@ -1,14 +1,23 @@
+using System;
 using UI;
+using UnityEngine;
 using Zenject;
 
 namespace MainMenu.View
 {
     public class MainMenuView: BaseView<MainMenuView.Model>
     {
-
+        public void StartNewGame() => CurrentModel.OnStartNewGame?.Invoke();
+        public void ExitGame() => Application.Quit();
+        
         public class Model
         {
-            
+            public Action OnStartNewGame;
+
+            public Model(Action onStartNewGame)
+            {
+                OnStartNewGame = onStartNewGame;
+            }
         }
     }
 
@@ -18,6 +27,7 @@ namespace MainMenu.View
         private readonly IUIControlService _uiControlService;
 
         private MainMenuView _mainMenuView;
+        private MainMenuView.Model _model;
         
         public MainMenuViewPresenter
         (
@@ -31,12 +41,18 @@ namespace MainMenu.View
 
         public void Initialize()
         {
-            _mainMenuView = _uiControlService.Create(_uiPrefabs.MainMenuView, new MainMenuView.Model());
+            _model = new MainMenuView.Model(StartNewGame);
+            _mainMenuView = _uiControlService.Create(_uiPrefabs.MainMenuView, _model);
         }
 
         public void Show() => _mainMenuView.Show();
 
         public void Hide() => _mainMenuView.Hide();
+
+        private void StartNewGame()
+        {
+            Hide();
+        }
     }
 
     public interface IMainMenuViewPresenter
