@@ -10,8 +10,10 @@ namespace Others
             BindHandlers();
             BindSettings();
             BindServices();
+            BindRepository();
             BindPresenters();
-            BindScenario();
+            BindScenarios();
+            BindOthers();
             BindLast();
         }
         
@@ -19,8 +21,10 @@ namespace Others
         protected virtual void BindHandlers() {}
         protected virtual void BindSettings() {}
         protected virtual void BindServices() {}
+        protected virtual void BindRepository() {}
         protected virtual void BindPresenters() {}
-        protected virtual void BindScenario() {}
+        protected virtual void BindScenarios() {}
+        protected virtual void BindOthers() {}
         protected virtual void BindLast() {}
     }
 }

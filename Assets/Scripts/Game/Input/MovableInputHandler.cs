@@ -17,7 +17,7 @@ namespace Game.Input
         
         public MovableInputHandler
         (
-            InputActions inputActions    
+            InputActions inputActions
         )
         {
             _inputActions = inputActions;

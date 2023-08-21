@@ -1,15 +1,20 @@
+using Game.Player.Spawner;
+
 namespace Game.Player
 {
-    public class PlayerService: IPLayerService
+    public class PlayerService: IPlayerService
     {
-        public void Spawn()
-        {
-            throw new System.NotImplementedException();
-        }
+        private readonly IPlayerSpawnService _playerSpawnService;
 
-        public void DeSpawn()
+        public PlayerService
+        (
+            IPlayerSpawnService playerSpawnService    
+        )
         {
-            throw new System.NotImplementedException();
+            _playerSpawnService = playerSpawnService;
         }
+        
+        public bool TrySpawn() => _playerSpawnService.TrySpawn(out _);
+        public bool TryDeSpawn() => _playerSpawnService.TryDeSpawn();
     }
 }

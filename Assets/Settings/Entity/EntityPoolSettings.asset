@@ -9,7 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a42b4a01e9a841eeb182edb6de62c997, type: 3}
-  m_Name: GameSettingsInstaller
+  m_Script: {fileID: 11500000, guid: 83e3769c652749a29b276afed4ab08b5, type: 3}
+  m_Name: EntityPoolSettings
   m_EditorClassIdentifier: 
-  _entityPoolSettings: {fileID: 11400000, guid: 4264583f2d1c2d046a924597e4ba1f82, type: 2}
+  _objectModels:
+  - Name: "\u0418\u0433\u0440\u043E\u043A"
+    Models:
+    - prefab: {fileID: 8394741874862690688, guid: 6163b5279ffcab746a76bd710b915c10, type: 3}
+      InitCount: 1

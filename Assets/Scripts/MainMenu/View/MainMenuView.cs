@@ -43,6 +43,7 @@ namespace MainMenu.View
         {
             _model = new MainMenuView.Model(StartNewGame);
             _mainMenuView = _uiControlService.Create(_uiPrefabs.MainMenuView, _model);
+            _mainMenuView.Hide();
         }
 
         public void Show() => _mainMenuView.Show();
