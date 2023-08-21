@@ -5,8 +5,8 @@ namespace Game.Input
 {
     public interface IMovableInputHandler
     {
-        Action StartMove { get; }
-        Action StopMove { get; }
-        Action<Vector2> Move { get; }
+        Action StartMove { get; set; }
+        Action StopMove { get; set; }
+        Action<Vector2> Move { get; set; }
     }
 }

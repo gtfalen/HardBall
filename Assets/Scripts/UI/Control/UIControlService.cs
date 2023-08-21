@@ -6,7 +6,7 @@ namespace UI
 {
     public class UIControlService: IUIControlService
     {
-        private List<IView> _views = new List<IView>();
+        private List<IView> _views = new();
 
         public TView Create<TView, TModel>(TView prefabView, TModel model) 
             where TView : MonoBehaviour, IView 

@@ -8,9 +8,9 @@ namespace Game.Input
     {
         private readonly InputActions _inputActions;
 
-        public Action StartMove { get; }
-        public Action StopMove { get; }
-        public Action<Vector2> Move { get; }
+        public Action StartMove { get; set; }
+        public Action StopMove { get; set; }
+        public Action<Vector2> Move { get; set; }
         
         private bool _isMoved;
         private Vector2 _direction;
