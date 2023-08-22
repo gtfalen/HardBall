@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a42b4a01e9a841eeb182edb6de62c997, type: 3}
   m_Name: GameSettingsInstaller
   m_EditorClassIdentifier: 
-  _entityPoolSettings: {fileID: 11400000, guid: 4264583f2d1c2d046a924597e4ba1f82, type: 2}
+  entityPoolSettings: {fileID: 11400000, guid: 4264583f2d1c2d046a924597e4ba1f82, type: 2}

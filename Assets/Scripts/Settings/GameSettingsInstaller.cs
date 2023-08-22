@@ -7,11 +7,11 @@ namespace Settings
     [CreateAssetMenu(fileName = "GameSettingsInstaller", menuName = "SettingsInstallers/GameSettingsInstaller", order = 0)]
     public class GameSettingsInstaller: ScriptableObjectInstaller
     {
-        [SerializeField] private EntityPoolSettings _entityPoolSettings;
+        [SerializeField] private EntityPoolSettings entityPoolSettings;
         
         public override void InstallBindings()
         {
-            Container.BindInstance<IEntityPoolProvider>(_entityPoolSettings);
+            Container.BindInstance<IEntitySettingsPoolProvider>(entityPoolSettings);
         }
     }
 }

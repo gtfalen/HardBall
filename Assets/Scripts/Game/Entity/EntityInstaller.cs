@@ -1,6 +1,8 @@
+using Game.Entity.Pool;
 using Game.Entity.Pool.Service;
 using Game.Entity.Repository;
 using Others;
+using UnityEngine;
 
 namespace Game.Entity
 {
@@ -15,6 +17,21 @@ namespace Game.Entity
         {
             Container.BindInterfacesTo<EntityPoolRepository>().AsSingle();
             Container.BindInterfacesTo<EntityRepository>().AsSingle();
+        }
+
+        protected override void BindOthers()
+        {
+            var entityPoolProvider = new GameObject("EntityPoolProvider").AddComponent<EntityPoolProvider>();
+            var poolProvider = Container.InstantiatePrefabForComponent<EntityPoolProvider>
+            (
+                entityPoolProvider.gameObject,
+                Vector3.zero, 
+                Quaternion.identity,
+                null
+            );
+
+            Destroy(entityPoolProvider);
+            Container.BindInterfacesTo<EntityPoolProvider>().FromInstance(poolProvider);
         }
     }
 }

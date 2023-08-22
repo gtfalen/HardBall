@@ -9,7 +9,7 @@ namespace Game.Entity.Pool.Service
 {
     public class EntityPoolService: IEntityPoolService, IInitializable
     {
-        private readonly IEntityPoolProvider _entityPoolProvider;
+        private readonly IEntitySettingsPoolProvider _entitySettingsPoolProvider;
         private readonly IEntityPoolRepository _entityPoolRepository;
         private readonly IEntityRepository _entityRepository;
 
@@ -17,17 +17,17 @@ namespace Game.Entity.Pool.Service
 
         public EntityPoolService
         (
-            IEntityPoolProvider entityPoolProvider,
+            IEntitySettingsPoolProvider entitySettingsPoolProvider,
             IEntityPoolRepository entityPoolRepository,
             IEntityRepository entityRepository
         )
         {
-            _entityPoolProvider = entityPoolProvider;
+            _entitySettingsPoolProvider = entitySettingsPoolProvider;
             _entityPoolRepository = entityPoolRepository;
             _entityRepository = entityRepository;
         }
 
-        public void Initialize() => InitPool(_entityPoolProvider.GetAll());
+        public void Initialize() => InitPool(_entitySettingsPoolProvider.GetAll());
 
         public bool TryRegister(BaseEntity entity)
         {

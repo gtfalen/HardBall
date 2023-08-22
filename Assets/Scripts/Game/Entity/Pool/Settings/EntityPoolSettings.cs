@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Game.Entity.Settings
 {
     [CreateAssetMenu(fileName = "EntityPoolSettings", menuName = "Settings/EntityPool", order = 0)]
-    public class EntityPoolSettings: ScriptableObject, IEntityPoolProvider
+    public class EntityPoolSettings: ScriptableObject, IEntitySettingsPoolProvider
     {
         [SerializeField] private List<CategoryModel> _objectModels;
 
