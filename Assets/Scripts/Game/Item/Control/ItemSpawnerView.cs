@@ -17,7 +17,14 @@ namespace Game.Item
         [SerializeField] private ItemRepositoryView _itemRepositoryView;
 
         private IEntityPoolService _entityPoolService;
-        private void Start() => _entityPoolService = EntityPoolProvider.Instance.EntityPoolService;
+
+        public Action OnFreeSpace { get; set; }
+
+        private void Start()
+        {
+            _entityPoolService = EntityPoolProvider.Instance.EntityPoolService;
+            _itemRepositoryView.OnGetItem += _ => OnFreeSpace?.Invoke();
+        }
 
         public void SpawnItem()
         {
@@ -41,5 +48,7 @@ namespace Game.Item
                 out var addedItem
             )) _itemRepositoryView.TryAdd(addedItem);
         }
+
+        public bool IsPossibleSpawn() => _itemRepositoryView.IsFreeSpace();
     }
 }

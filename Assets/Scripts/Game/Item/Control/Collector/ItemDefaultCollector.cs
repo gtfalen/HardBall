@@ -2,17 +2,17 @@ using UnityEngine;
 
 namespace Game.Item
 {
-    public class ItemPlayerCollectorView: BaseItemCollector
+    public class ItemDefaultCollector: BaseItemCollector
     {
-        [Header("Player repository")] 
+        [Header("Item repository")] 
         [SerializeField] private ItemRepositoryView _itemRepositoryView;
+        
+        [Header("Collected Item")] 
+        [SerializeField] private ItemView _collectedItem;
         
         protected override void OnCollectItem(ItemDistributorView itemDistributorView)
         {
-            if(!_itemRepositoryView.IsFreeSpace())
-                return;
-
-            if (itemDistributorView.ItemRepositoryView.TryGet(out var receivedItem))
+            if (itemDistributorView.ItemRepositoryView.TryGet(_collectedItem, out var receivedItem))
                 _itemRepositoryView.TryAdd(receivedItem);
         }
     }

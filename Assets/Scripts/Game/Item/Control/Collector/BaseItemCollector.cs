@@ -4,7 +4,7 @@ namespace Game.Item
 {
     public class BaseItemCollector: MonoBehaviour
     {
-        [Header("Item repository")] 
+        [Header("Pickup Delay")] 
         [SerializeField] [Range(0.1f, 10f)] private float _collectorCooldown = 0.4f;
         
         [Header("is it allowed to collect items")] 

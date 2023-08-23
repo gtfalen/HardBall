@@ -1,5 +1,4 @@
 using System;
-using Game.Entity;
 using UnityEngine;
 
 namespace Game.Item
@@ -9,10 +8,14 @@ namespace Game.Item
         [Header("Repository where items will spawn")]
         [SerializeField] private ItemRepositoryView _itemRepositoryView;
 
+        public ItemRepositoryView ItemRepositoryView { get; private set; }
+        
         private void Start()
         {
             if (_itemRepositoryView == null)
                 throw new ArgumentNullException("Item repository not set");
+
+            ItemRepositoryView = _itemRepositoryView;
         }
 
         public void OnTriggerEnter(Collider other)
@@ -26,7 +29,5 @@ namespace Game.Item
             if(other.gameObject.TryGetComponent(out BaseItemCollector baseItemCollector))
                 baseItemCollector.UnsetDistributor();
         }
-
-        public bool TryGetItem(out BaseEntity item) => _itemRepositoryView.TryGet(out item);
     }
 }
