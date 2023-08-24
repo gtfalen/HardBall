@@ -2,6 +2,7 @@ using System;
 using Game.Entity;
 using Game.Entity.Pool.Service;
 using Game.SessionScenarios;
+using UniRx;
 
 namespace Game.Player.Spawner
 {
@@ -12,10 +13,11 @@ namespace Game.Player.Spawner
 
         public Action<PlayerView> OnPlayerSpawn { get; set; }
         public Action OnPlayerDeSpawn { get; set; }
-        public bool IsSpawn { get; private set; }
+        
+        public PlayerView CurrentPlayerView { get; private set; }
+        public ReactiveProperty<bool> IsSpawn { get; } = new();
 
         private BaseEntity _spawnedEntity;
-        private PlayerView _playerView;
 
         public PlayerSpawnService
         (
@@ -25,18 +27,6 @@ namespace Game.Player.Spawner
         {
             _entityPoolService = entityPoolService;
             _coreGamePlayModel = coreGamePlayModel;
-        }
-        
-        public bool TryGetBaseEntity(out BaseEntity playerEntity)
-        {
-            playerEntity = _spawnedEntity;
-            return IsSpawn;
-        }
-
-        public bool TryGetPlayerView(out PlayerView playerView)
-        {
-            playerView = _playerView;
-            return IsSpawn;
         }
 
         public bool TrySpawn(out BaseEntity playerEntity)
@@ -49,23 +39,22 @@ namespace Game.Player.Spawner
                 out playerEntity
             );
 
-            var playerView = (PlayerView)playerEntity;
-            
+            CurrentPlayerView = (PlayerView)playerEntity;
             _spawnedEntity = playerEntity;
-            _playerView = playerView;
-            IsSpawn = isSpawned;
-            OnPlayerSpawn?.Invoke(playerView);
+            IsSpawn.Value = isSpawned;
+            OnPlayerSpawn?.Invoke(CurrentPlayerView);
             return isSpawned;
         }
 
         public bool TryDeSpawn()
         {
-            if (!IsSpawn) 
+            if (!IsSpawn.Value) 
                 return false;
             
             var isDeSpawned = _entityPoolService.TryDeSpawn(_spawnedEntity);
-            IsSpawn = !isDeSpawned;
+            IsSpawn.Value = !isDeSpawned;
             OnPlayerDeSpawn?.Invoke();
+            CurrentPlayerView = null;
             return isDeSpawned;
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using Game.Entity;
 using UnityEngine;
 
@@ -7,5 +8,6 @@ namespace Game.Player
     {
         public CharacterController CharacterController;
         public Transform SkinTransform;
+        public Action OnMoneyCollect;
     }
 }

@@ -10,7 +10,7 @@ namespace Game.Item
     public class ItemRepository: MonoBehaviour
     {
         [Header("Initial maximum available slots")] 
-        [SerializeField] [Range(1, 99)] private int _maxAvailableSlots;
+        [SerializeField] [Range(1, 999)] private int _maxAvailableSlots;
         
         [Header("Item spawn slots")]
         [SerializeField] private List<ItemSlot> _slots;
@@ -56,7 +56,7 @@ namespace Game.Item
             return true;
         }
 
-        public bool TryGetItem<T>(T requiredItem, out BaseEntity receivedItem) where T : ItemView
+        public bool TryGetItem<T>(T requiredItem, out BaseEntity receivedItem)
         {
             receivedItem = default;
             
@@ -64,6 +64,25 @@ namespace Game.Item
                 return false;
             
             var searchType = requiredItem.GetType();
+            var fullSlots = _slots.Where(slot => !slot.IsEmpty);
+
+            if (!fullSlots.Any(slot => slot.ItemInSlot.GetType() == searchType))
+                return false;
+
+            receivedItem = 
+                EmptySlot(fullSlots.First(slot => slot.ItemInSlot.GetType() == searchType));
+            
+            return true;
+        }
+        
+        public bool TryGetItem<T>(out BaseEntity receivedItem)
+        {
+            receivedItem = default;
+            
+            if (_slots.All(slot => slot.IsEmpty))
+                return false;
+            
+            var searchType = typeof(T);
             var fullSlots = _slots.Where(slot => !slot.IsEmpty);
 
             if (!fullSlots.Any(slot => slot.ItemInSlot.GetType() == searchType))

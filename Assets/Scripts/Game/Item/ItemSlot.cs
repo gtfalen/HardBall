@@ -26,8 +26,7 @@ namespace Game.Item
             
             ItemInSlot = item;
             IsEmpty = false;
-            ItemInSlot.transform.SetParent(_slotTransform);
-            AnimationSetItemSlot(ItemInSlot);
+            ((ItemView)ItemInSlot)?.SetParent(_slotTransform);
             return true;
         }
 
@@ -35,19 +34,6 @@ namespace Game.Item
         {
             IsEmpty = true;
             ItemInSlot = null;
-        }
-
-        private void AnimationSetItemSlot(BaseEntity item)
-        {
-            item.transform
-                .DOLocalMove(Vector3.zero, 0.1f)
-                .SetEase(Ease.Flash)
-                .SetLink(gameObject);
-
-            item.transform
-                .DOLocalRotate(Vector3.zero, 0.1f)
-                .SetEase(Ease.Flash)
-                .SetLink(gameObject);
         }
     }
 }

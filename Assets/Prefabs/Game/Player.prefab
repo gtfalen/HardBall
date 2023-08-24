@@ -1566,6 +1566,15 @@ MonoBehaviour:
   - {fileID: 4203431640128664729}
   - {fileID: 6675671393788438723}
   - {fileID: 6120787583004656929}
+  OnChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAddedItem:
+    m_PersistentCalls:
+      m_Calls: []
+  OnGetItem:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7565733665386337845
 GameObject:
   m_ObjectHideFlags: 0
@@ -1658,6 +1667,7 @@ MonoBehaviour:
   _collectorCooldown: 0.2
   _isAllAllowedPick: 1
   _itemRepository: {fileID: 3189601306546376020}
+  _playerView: {fileID: 8394741874862690688}
 --- !u!114 &4947446480580247934
 MonoBehaviour:
   m_ObjectHideFlags: 0

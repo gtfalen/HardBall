@@ -1,18 +1,18 @@
 using System;
 using Game.Entity;
+using UniRx;
 
 namespace Game.Player.Spawner
 {
     public interface IPlayerSpawnService
     {
-        bool IsSpawn { get; }
+        public ReactiveProperty<bool> IsSpawn { get; }
 
+        public PlayerView CurrentPlayerView { get; }
+        
         Action<PlayerView> OnPlayerSpawn { get; set; }
         Action OnPlayerDeSpawn { get; set; }
 
-        bool TryGetBaseEntity(out BaseEntity playerEntity);
-        bool TryGetPlayerView(out PlayerView playerView);
-        
         bool TrySpawn(out BaseEntity playerEntity);
         bool TryDeSpawn();
     }

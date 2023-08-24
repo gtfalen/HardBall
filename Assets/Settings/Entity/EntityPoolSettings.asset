@@ -21,3 +21,5 @@ MonoBehaviour:
       InitCount: 1
     - prefab: {fileID: 1674938301556368357, guid: 309e10d9db4d9de44aedb7e19cd49223, type: 3}
       InitCount: 1
+    - prefab: {fileID: 7366349971042601139, guid: b9f2ff2a299818c4e919c71089ba3021, type: 3}
+      InitCount: 1

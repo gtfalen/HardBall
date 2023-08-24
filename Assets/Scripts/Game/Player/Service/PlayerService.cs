@@ -5,7 +5,7 @@ namespace Game.Player
     public class PlayerService: IPlayerService
     {
         private readonly IPlayerSpawnService _playerSpawnService;
-
+        
         public PlayerService
         (
             IPlayerSpawnService playerSpawnService    
@@ -13,8 +13,15 @@ namespace Game.Player
         {
             _playerSpawnService = playerSpawnService;
         }
-        
-        public bool TrySpawn() => _playerSpawnService.TrySpawn(out _);
+
+        public bool TrySpawn()
+        {
+            if (!_playerSpawnService.TrySpawn(out var playerEntity))
+                return false;
+            
+            return true;
+        }
+
         public bool TryDeSpawn() => _playerSpawnService.TryDeSpawn();
     }
 }
