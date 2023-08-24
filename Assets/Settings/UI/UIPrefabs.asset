@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ef3a4211eac453c9773f97560afcc4e, type: 3}
   m_Name: UIPrefabs
   m_EditorClassIdentifier: 
-  _mainMenuView: {fileID: 3871758557588743287, guid: f364e16a6f512014a861f1d64446bd88, type: 3}
+  hudView: {fileID: 3871758557588743287, guid: f364e16a6f512014a861f1d64446bd88, type: 3}

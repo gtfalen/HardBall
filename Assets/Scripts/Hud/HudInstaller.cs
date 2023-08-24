@@ -3,11 +3,11 @@ using Others;
 
 namespace MainMenu
 {
-    public class MainMenuInstaller: InitMonoInstaller
+    public class HudInstaller: InitMonoInstaller
     {
         protected override void BindPresenters()
         {
-            Container.BindInterfacesTo<MainMenuViewPresenter>().AsSingle();
+            Container.BindInterfacesTo<HudViewPresenter>().AsSingle();
         }
     }
 }
