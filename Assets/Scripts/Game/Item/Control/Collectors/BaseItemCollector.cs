@@ -7,28 +7,30 @@ namespace Game.Item
         [Header("Pickup Delay")] 
         [SerializeField] [Range(0.1f, 10f)] private float _collectorCooldown = 0.4f;
         
-        [Header("is it allowed to collect items")] 
+        [Header("Is it allowed to collect items")] 
         [SerializeField] private bool _isAllAllowedPick = true;
 
         public bool IsAllAllowedPick { get; protected set; } = true;
         public float CollectorCooldown { get; set; }
-        private ItemDistributorView _itemDistributorView;
+        
+        private ItemRepository _collectedRepository;
 
         public void Start()
         {
             CollectorCooldown = _collectorCooldown;
             IsAllAllowedPick = _isAllAllowedPick;
+            OnStart();
         }
 
-        public void SetDistributor(ItemDistributorView itemDistributorView)
+        public void SetCollectedRepository(ItemRepository collectedRepository)
         {
-            _itemDistributorView = itemDistributorView;
+            _collectedRepository = collectedRepository;
             InvokeRepeating(nameof(CollectItem), CollectorCooldown, CollectorCooldown);
         }
 
-        public void UnsetDistributor()
+        public void UnsetCollectedRepository()
         {
-            _itemDistributorView = null;
+            _collectedRepository = null;
             CancelInvoke(nameof(CollectItem));
         }
 
@@ -36,10 +38,11 @@ namespace Game.Item
         {
             if(!IsAllAllowedPick)
                 return;
-
-            OnCollectItem(_itemDistributorView);
+                
+            OnCollectItem(_collectedRepository);
         }
 
-        protected virtual void OnCollectItem(ItemDistributorView itemDistributorView) {}
+        protected virtual void OnCollectItem(ItemRepository collectedRepository) {}
+        protected virtual void OnStart() {}
     }
 }

@@ -1,11 +1,12 @@
 using System;
+using Game.Entity;
 using Game.Entity.Pool;
 using Game.Entity.Pool.Service;
 using UnityEngine;
 
 namespace Game.Item
 {
-    public class ItemSpawnerView: MonoBehaviour
+    public class ItemSpawner: MonoBehaviour
     {
         [Header("The prefab of the item that will spawn")]
         [SerializeField] private ItemView _itemPrefab;
@@ -14,41 +15,46 @@ namespace Game.Item
         [SerializeField] private Transform _itemSpawnTransform;
 
         [Header("Repository where items will spawn")]
-        [SerializeField] private ItemRepositoryView _itemRepositoryView;
+        [SerializeField] private ItemRepository _itemRepository;
 
         private IEntityPoolService _entityPoolService;
 
-        public Action OnFreeSpace { get; set; }
+        public Action<BaseEntity> OnSpawnItem { get; set; }
 
         private void Start()
-        {
-            _entityPoolService = EntityPoolProvider.Instance.EntityPoolService;
-            _itemRepositoryView.OnGetItem += _ => OnFreeSpace?.Invoke();
-        }
-
-        public void SpawnItem()
         {
             if (_itemPrefab == null)
                 throw new ArgumentNullException("Spawn item prefab not set");
             
-            if (_itemRepositoryView == null)
+            if (_itemRepository == null)
                 throw new ArgumentNullException("Item repository not set");
 
             if (_itemSpawnTransform == null)
                 throw new ArgumentNullException("Item spawn transform not set");
             
-            if(!_itemRepositoryView.IsFreeSpace())
-                return;
+            _entityPoolService = EntityPoolProvider.Instance.EntityPoolService;
+        }
+
+        public void SpawnItem() => TrySpawnItem();
+        
+        public bool TrySpawnItem()
+        {
+            if(!_itemRepository.IsFreeSpace())
+                return false;
             
-            if (_entityPoolService.TrySpawn
+            if (!_entityPoolService.TrySpawn
             (
                 _itemPrefab.GetType(),
                 _itemSpawnTransform.position,
                 _itemSpawnTransform.rotation,
                 out var addedItem
-            )) _itemRepositoryView.TryAdd(addedItem);
+            )) return false;
+            
+            _itemRepository.TryAddItem(addedItem);
+            OnSpawnItem?.Invoke(addedItem);
+            return true;
         }
 
-        public bool IsPossibleSpawn() => _itemRepositoryView.IsFreeSpace();
+        public bool IsPossibleSpawn() => _itemRepository.IsFreeSpace();
     }
 }

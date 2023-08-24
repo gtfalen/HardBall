@@ -7,11 +7,10 @@ public class UIAudio : MonoBehaviour
 
     private UIAudio() {}
 
-    private void CreateAudioSource()
+    private void CreateAudioSourceGameObject()
     {
-        var gameObject = new GameObject();
-        gameObject.name = "UIAudio";
-        
+        var gameObject = new GameObject("UIAudio");
+
         _audioSource = gameObject.AddComponent<AudioSource>();
         _audioSource.playOnAwake = false;
             
@@ -23,7 +22,7 @@ public class UIAudio : MonoBehaviour
     public void PlayAudio(AudioClip clip)
     {
         if (_audioSource == null)
-            CreateAudioSource();
+            CreateAudioSourceGameObject();
             
         _audioSource.clip = clip;
         _audioSource.PlayOneShot(clip);
