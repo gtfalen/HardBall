@@ -17,8 +17,10 @@ namespace Game.Item
 
         [Header("Called when an item is added or removed")]
         public UnityEvent OnChange;
+        
         [Header("Called when an item is added")]
         public UnityEvent OnAddedItem;
+        
         [Header("Called when an item is removed.")]
         public UnityEvent OnGetItem;
         
