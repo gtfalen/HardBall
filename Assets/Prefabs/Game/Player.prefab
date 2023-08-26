@@ -795,6 +795,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1035532667845338021}
   - component: {fileID: 5293300875276032693}
+  - component: {fileID: 7335363393127754647}
   m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
@@ -899,6 +900,24 @@ SkinnedMeshRenderer:
     m_Center: {x: -4.656613e-10, y: -0.0003980901, z: 0.00007713161}
     m_Extent: {x: 0.0072343643, y: 0.008844826, z: 0.0016637598}
   m_DirtyAABB: 0
+--- !u!114 &7335363393127754647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3902807897699626319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0, g: 0, b: 0, a: 0.95686275}
+  outlineWidth: 2
+  precomputeOutline: 1
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &4240387134055947877
 GameObject:
   m_ObjectHideFlags: 0

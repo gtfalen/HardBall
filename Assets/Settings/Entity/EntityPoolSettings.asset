@@ -18,8 +18,8 @@ MonoBehaviour:
     - prefab: {fileID: 8394741874862690688, guid: 6163b5279ffcab746a76bd710b915c10, type: 3}
       InitCount: 1
     - prefab: {fileID: -7253289770092572577, guid: d5c751ed8eb9df84cae628ec805726ef, type: 3}
-      InitCount: 1
+      InitCount: 10
     - prefab: {fileID: 1674938301556368357, guid: 309e10d9db4d9de44aedb7e19cd49223, type: 3}
-      InitCount: 1
+      InitCount: 10
     - prefab: {fileID: 7366349971042601139, guid: b9f2ff2a299818c4e919c71089ba3021, type: 3}
-      InitCount: 1
+      InitCount: 99

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4114983030961151379}
   - component: {fileID: 2271003814453345623}
   - component: {fileID: 4552827881609279781}
+  - component: {fileID: 5606089309341087816}
   m_Layer: 0
   m_Name: ItemDistributor
   m_TagString: Untagged
@@ -122,3 +123,30 @@ MonoBehaviour:
   _layerInteractions:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &5606089309341087816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327995478336077429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17830e55a2b245ba8d1d0cbb2a1b3b8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4114983030961151379}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
