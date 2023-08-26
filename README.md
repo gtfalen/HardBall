@@ -2,6 +2,7 @@
 
 This is a simple drag and drop game. <br/>
 Technology stack used on the project: <b>Zenject</b> | <b>UniRx</b>
+<b>Download to play: <a href = "https://github.com/gtfalen/HardBall/releases/tag/PC">Donwload PC Build</a></b>
 
 <p align="center">
  <img width="600" src="Assets/privew.gif" alt="privew"/>
