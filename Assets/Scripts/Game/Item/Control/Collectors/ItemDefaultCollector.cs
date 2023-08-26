@@ -10,6 +10,9 @@ namespace Game.Item
         
         [Header("Collected Item")] 
         [SerializeField] private ItemView _collectedItem;
+        
+        [Header("Item indicator (Optional)")] 
+        [SerializeField] private ItemIndicatorView _itemIndicator;
 
         protected override void OnStart()
         {
@@ -18,6 +21,9 @@ namespace Game.Item
             
             if (_itemRepository == null)
                 throw new ArgumentNullException("Collectable item on set");
+
+            if (_itemIndicator != null)
+                ShowItemIndicator();
         }
 
         protected override void OnCollectItem(ItemRepository collectedRepository)
@@ -27,6 +33,17 @@ namespace Game.Item
             
             if (collectedRepository.TryGetItem(_collectedItem, out var receivedItem))
                 _itemRepository.TryAddItem(receivedItem);
+        }
+
+        private void ShowItemIndicator()
+        {
+            var model = new ItemIndicatorView.Model
+            (
+                _itemRepository.MaxAvailableSlots,
+                _itemRepository.CountItem,
+                _collectedItem
+            );
+            _itemIndicator.Show(model);
         }
     }
 }

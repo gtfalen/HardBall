@@ -20,7 +20,7 @@ namespace StateMachine
         {
             _states = _addedStates;
             if (_startState == null)
-                throw new ArgumentNullException("Base state not se");
+                throw new ArgumentNullException("Base state not set");
             
             TryRunState(_startState);
         }

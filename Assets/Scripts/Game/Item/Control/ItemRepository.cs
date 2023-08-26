@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Game.Entity;
+using UniRx;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -23,10 +24,11 @@ namespace Game.Item
         
         [Header("Called when an item is removed.")]
         public UnityEvent OnGetItem;
-        
-        public int MaxAvailableSlots { get; set; }
 
-        private void Start() => MaxAvailableSlots = _maxAvailableSlots;
+        public ReactiveProperty<int> MaxAvailableSlots { get; } = new();
+        public ReactiveProperty<int> CountItem { get; } = new();
+
+        private void Start() => MaxAvailableSlots.Value = _maxAvailableSlots;
 
         public bool TryAddItem(BaseEntity addedItem)
         {
@@ -41,7 +43,8 @@ namespace Game.Item
 
             if (!itemSlot.TrySetItem(addedItem))
                 return false;
-            
+
+            CountItem.Value++;
             OnAddedItem?.Invoke();
             OnChange?.Invoke();
             return true;
@@ -73,7 +76,6 @@ namespace Game.Item
 
             receivedItem = 
                 EmptySlot(fullSlots.First(slot => slot.ItemInSlot.GetType() == searchType));
-            
             return true;
         }
         
@@ -102,7 +104,7 @@ namespace Game.Item
             .ToList();
 
         public bool IsFreeSpace() 
-            => _slots.Any(slot => slot.IsEmpty) && MaxAvailableSlots > _slots.Count(slot => !slot.IsEmpty);
+            => _slots.Any(slot => slot.IsEmpty) && MaxAvailableSlots.Value > _slots.Count(slot => !slot.IsEmpty);
 
         private void ArrangeSlots()
         {
@@ -129,6 +131,7 @@ namespace Game.Item
             var receivedItem = itemSlot.ItemInSlot;
             itemSlot.UnSetItem();
             ArrangeSlots();
+            CountItem.Value--;
             OnGetItem?.Invoke();
             OnChange?.Invoke();
             return receivedItem;
